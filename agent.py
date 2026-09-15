@@ -13,9 +13,8 @@ def ejecutar_sistema_autonomo(objetivo):
     except Exception as e:
         hallazgos_web = f"No se pudieron obtener resultados web directo: {e}"
 
-    # 2. Modelo de IA ultrarrápido y gratuito de Groq
-    llm = ChatGroq(model_name="llama3-8b-8192", temperature=0.7)
-
+    # 2. Modelo de producción activo en Groq
+    llm = ChatGroq(model_name="llama-3.1-8b-instant", temperature=0.7)
 
     # 3. Prompt de integración
     prompt = f"""
