@@ -1,9 +1,9 @@
 import os
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from ddgs import DDGS
 
 def ejecutar_sistema_autonomo(objetivo):
-    # 1. Búsqueda web directa con el paquete ddgs
+    # 1. Búsqueda web directa con ddgs
     hallazgos_web = ""
     try:
         with DDGS() as ddgs:
@@ -13,10 +13,10 @@ def ejecutar_sistema_autonomo(objetivo):
     except Exception as e:
         hallazgos_web = f"No se pudieron obtener resultados web directo: {e}"
 
-    # 2. Modelo de Inteligencia Artificial
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
+    # 2. Modelo de IA ultrarrápido y gratuito de Groq
+    llm = ChatGroq(model_name="llama-3.3-70b-versatile", temperature=0.7)
 
-    # 3. Prompt de integración y análisis
+    # 3. Prompt de integración
     prompt = f"""
     Eres una IA autónoma experta en desarrollo de software, mecánica e investigación.
     
