@@ -5,28 +5,26 @@ from agent import ejecutar_sistema_autonomo
 st.set_page_config(page_title="Centro de Mando IA", layout="wide")
 
 st.title("🤖 Centro de Mando de Agentes Autónomos")
-st.write("Escribe una orden para que el equipo investigue la web y programe el código.")
+st.write("Escribe una orden para que el sistema investigue en la web y programe la solución.")
 
-# Configuración de llaves en el menú lateral
-st.sidebar.header("Configuración de API Keys")
+# Menú lateral para la llave de OpenAI
+st.sidebar.header("Configuración")
 api_key = st.sidebar.text_input("OpenAI API Key", type="password")
-serper_key = st.sidebar.text_input("Serper API Key", type="password")
 
-if api_key and serper_key:
+if api_key:
     os.environ["OPENAI_API_KEY"] = api_key
-    os.environ["SERPER_API_KEY"] = serper_key
 
     orden = st.text_area("¿Qué deseas que investigue o programe el sistema?", height=120)
 
     if st.button("Ejecutar Sistema Autónomo", type="primary"):
-        with st.spinner("Los agentes están investigando en internet y programando..."):
+        with st.spinner("Buscando en internet y generando código..."):
             try:
                 resultado = ejecutar_sistema_autonomo(orden)
                 st.success("¡Tarea Completada!")
-                st.markdown("### Resultado de los Agentes:")
-                st.code(resultado, language="python")
+                st.markdown("### Resultado:")
+                st.write(resultado)
             except Exception as e:
-                st.error(f"Ocurrió un error durante la ejecución: {e}")
+                st.error(f"Ocurrió un error: {e}")
 else:
-    st.warning("👈 Por favor ingresa tus llaves de OpenAI y Serper en el menú lateral para comenzar.")
-  
+    st.warning("👈 Por favor ingresa tu API Key de OpenAI en el menú lateral para iniciar.")
+    
