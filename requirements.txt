@@ -1,0 +1,4 @@
+crewai==0.28.8
+crewai-tools==0.2.0
+streamlit==1.32.0
+langchain-openai==0.1.1
